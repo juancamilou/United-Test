@@ -1,0 +1,184 @@
+:root {
+    --primary: #ccff00;
+    --dark-bg: #0a0a0a;
+    --card-bg: #151515;
+    --white: #ffffff;
+    --gray: #222;
+    --text-muted: #888;
+    --danger: #ff4444;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--white);
+    line-height: 1.6;
+}
+
+/* Header */
+.main-header {
+    background-color: #000;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid var(--gray);
+}
+
+.nav-container {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 90%; max-width: 1200px; margin: 0 auto;
+}
+
+.logo { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; letter-spacing: 2px; }
+.logo span { color: var(--primary); }
+
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a { color: var(--white); text-decoration: none; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+
+.cart-trigger {
+    background: var(--gray); border: none; color: white; padding: 10px 18px;
+    border-radius: 50px; cursor: pointer; position: relative; font-size: 1.2rem;
+}
+
+.badge {
+    position: absolute; top: -5px; right: -5px; background: var(--primary);
+    color: black; font-size: 0.75rem; font-weight: bold; padding: 2px 7px; border-radius: 50%;
+}
+
+/* Filtros */
+.filter-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+.filter-btn {
+    background: transparent; color: white; border: 1px solid #444;
+    padding: 10px 25px; border-radius: 50px; cursor: pointer;
+    font-weight: bold; text-transform: uppercase; font-size: 0.75rem; transition: 0.3s;
+}
+.filter-btn:hover, .filter-btn.active { background: var(--primary); color: black; border-color: var(--primary); }
+
+/* Modal Centrado */
+.cart-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center; z-index: 2000;
+}
+
+.cart-modal {
+    background: #111; width: 95%; max-width: 550px; max-height: 85vh;
+    border-radius: 20px; position: relative; padding: 2.5rem;
+    display: flex; flex-direction: column; border: 1px solid #333;
+    animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.close-btn {
+    position: absolute; top: 15px; right: 20px; background: none; border: none;
+    color: var(--white); font-size: 2.5rem; cursor: pointer; transition: 0.3s;
+}
+.close-btn:hover { color: var(--primary); transform: rotate(90deg); }
+
+.cart-body { flex: 1; overflow-y: auto; margin: 1.5rem 0; padding-right: 10px; }
+
+/* Items del Carrito con Imagen */
+.cart-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 0; border-bottom: 1px solid var(--gray);
+}
+
+.cart-item-main { display: flex; align-items: center; flex: 1; }
+
+.cart-item-img {
+    width: 65px; height: 65px; object-fit: cover;
+    border-radius: 8px; margin-right: 15px; border: 1px solid #333;
+}
+
+.cart-item-info h4 { font-size: 0.85rem; margin: 0; }
+
+.cart-item-controls { display: flex; align-items: center; gap: 12px; }
+
+.btn-qty {
+    background: #333; color: white; border: none; width: 26px; height: 26px;
+    border-radius: 5px; cursor: pointer; font-weight: bold;
+}
+.btn-qty:hover { background: var(--primary); color: black; }
+
+.btn-del {
+    background: transparent; border: 1px solid #444; color: white;
+    padding: 5px 8px; border-radius: 6px; cursor: pointer;
+}
+.btn-del:hover { background: var(--danger); border-color: var(--danger); }
+
+/* Footer Modal */
+.total-row { display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem; margin-top: 10px; }
+.cart-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.btn-secondary {
+    background: transparent; color: var(--text-muted); border: 1px solid var(--gray);
+    padding: 1rem; border-radius: 10px; cursor: pointer; flex: 1; font-weight: bold;
+}
+.btn-secondary:hover { color: var(--danger); border-color: var(--danger); }
+.btn-checkout {
+    background: var(--primary); color: black; border: none;
+    padding: 1rem; border-radius: 10px; cursor: pointer; flex: 1.5; font-weight: bold;
+}
+
+/* Catálogo */
+.container { max-width: 1200px; margin: 3rem auto; padding: 0 20px; }
+.hero { text-align: center; margin-bottom: 4rem; }
+.hero h1 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; }
+.highlight { color: var(--primary); }
+
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
+
+.product-card {
+    background: var(--card-bg); border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--gray); transition: 0.4s;
+}
+.product-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+.product-card img { width: 100%; height: 350px; object-fit: cover; }
+.product-info { padding: 1.5rem; }
+
+.btn-add {
+    width: 100%; background: var(--primary); color: black; border: none;
+    padding: 1rem; font-weight: 800; cursor: pointer; border-radius: 10px; text-transform: uppercase;
+}
+
+/* Site Footer */
+.site-footer {
+    background: #000; border-top: 1px solid var(--gray);
+    padding: 5rem 0; margin-top: 6rem; text-align: center;
+}
+.footer-logo { font-family: 'Orbitron', sans-serif; margin-bottom: 1.5rem; font-size: 1.8rem; }
+.footer-logo span { color: var(--primary); }
+/* --- ESTILOS PARA LAS IMÁGENES DENTRO DEL CARRITO --- */
+.cart-item-main {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre imagen y texto */
+    flex: 1;
+}
+
+.cart-item-img {
+    width: 60px;  /* Tamaño fijo para la miniatura */
+    height: 60px;
+    object-fit: cover; /* Evita que la imagen se estire */
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: #222; /* Fondo por si la imagen tarda en cargar */
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item-info h4 {
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--white);
+}
